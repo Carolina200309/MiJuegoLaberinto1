@@ -12,7 +12,7 @@ namespace JuegoLaberinto
         private SpriteBatch _spriteBatch;
         
         Player Daisy;
-        
+        Sprite Luigi;
 
         public Game1()
         {
@@ -31,7 +31,7 @@ namespace JuegoLaberinto
             // TODO: Add your initialization logic here
            
             Daisy = new Player();
-            
+            Luigi = new Sprite("Luigi", new Point(1350, 0), new Point(150, 150));
 
             base.Initialize();
         }
@@ -43,7 +43,8 @@ namespace JuegoLaberinto
             // TODO: use this.Content to load your game content here
            
             Daisy.LoadContent(this.Content);
-            
+            Luigi.LoadContent(this.Content);
+
 
         }
 
@@ -84,7 +85,7 @@ namespace JuegoLaberinto
 
             
             Daisy.Draw(this._spriteBatch, Color.White);
-            
+            Luigi.Draw(this._spriteBatch, Color.White);
 
             _spriteBatch.End();
 
