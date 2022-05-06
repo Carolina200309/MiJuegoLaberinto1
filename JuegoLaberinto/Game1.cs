@@ -20,8 +20,8 @@ namespace JuegoLaberinto
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
             //_graphics.IsFullScreen = true;
-            _graphics.PreferredBackBufferWidth = 1500;
-            _graphics.PreferredBackBufferHeight = 1000;
+            _graphics.PreferredBackBufferWidth = 800;
+            _graphics.PreferredBackBufferHeight = 600;
             _graphics.ApplyChanges();
 
         }
@@ -29,9 +29,9 @@ namespace JuegoLaberinto
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            fondo = new Sprite("fondo", new Point(0, 0), new Point(1500, 1000));
+            fondo = new Sprite("fondo", new Point(0, 0), new Point(800, 600));
             Daisy = new Player();
-            Luigi = new Sprite("Luigi", new Point(1350, 0), new Point(150, 150));
+            Luigi = new Sprite("Luigi", new Point(600, 0), new Point(100, 100));
 
             base.Initialize();
         }
