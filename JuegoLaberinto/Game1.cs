@@ -10,9 +10,10 @@ namespace JuegoLaberinto
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        Sprite fondo;
+        Background fondo;
         Player Daisy;
         Sprite Luigi;
+        Walls Walls;
 
         public Game1()
         {
@@ -29,9 +30,10 @@ namespace JuegoLaberinto
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            fondo = new Sprite("fondo", new Point(0, 0), new Point(800, 600));
+            fondo = new Background();
             Daisy = new Player();
             Luigi = new Sprite("Luigi", new Point(600, 0), new Point(100, 100));
+            Walls= new Walls(new Point(50,50), new Point(100,150));
 
             base.Initialize();
         }
@@ -42,9 +44,10 @@ namespace JuegoLaberinto
 
             // TODO: use this.Content to load your game content here
             fondo.LoadContent(this.Content);
+            Walls.LoadContent(this.Content);
             Daisy.LoadContent(this.Content);
             Luigi.LoadContent(this.Content);
-
+        
 
         }
 
@@ -84,6 +87,7 @@ namespace JuegoLaberinto
             _spriteBatch.Begin();
 
             fondo.Draw(this._spriteBatch, Color.White);
+            Walls.Draw(this._spriteBatch, Color.White);
             Daisy.Draw(this._spriteBatch, Color.White);
             Luigi.Draw(this._spriteBatch, Color.White);
 
