@@ -13,7 +13,8 @@ namespace JuegoLaberinto
         Background fondo;
         Player Daisy;
         Sprite Luigi;
-        Walls Walls;
+        List<Walls> walls;
+        
 
         public Game1()
         {
@@ -32,8 +33,13 @@ namespace JuegoLaberinto
             // TODO: Add your initialization logic here
             fondo = new Background();
             Daisy = new Player();
-            Luigi = new Sprite("Luigi", new Point(600, 0), new Point(100, 100));
-            Walls= new Walls(new Point(50,50), new Point(100,150));
+            Luigi = new Sprite("Luigi", new Point(690, 0), new Point(100, 100));
+            walls = new List<Walls>();
+            walls.AddRange(Walls.HorizontalWall(new Point(100,100), 14));
+            walls.AddRange(Walls.VerticalWall(new Point(100, 150), 2));
+            walls.AddRange(Walls.HorizontalWall(new Point(-50, 400), 15));
+            walls.AddRange(Walls.HorizontalWall(new Point(100, 200), 14));
+            walls.AddRange(Walls.VerticalWall(new Point(700, 350), 2));
 
             base.Initialize();
         }
@@ -44,9 +50,13 @@ namespace JuegoLaberinto
 
             // TODO: use this.Content to load your game content here
             fondo.LoadContent(this.Content);
-            Walls.LoadContent(this.Content);
             Daisy.LoadContent(this.Content);
             Luigi.LoadContent(this.Content);
+
+            foreach (var item in walls)
+            {
+                item.LoadContent(this.Content);
+            }
         
 
         }
@@ -87,7 +97,10 @@ namespace JuegoLaberinto
             _spriteBatch.Begin();
 
             fondo.Draw(this._spriteBatch, Color.White);
-            Walls.Draw(this._spriteBatch, Color.White);
+            foreach (var item in walls)
+            {
+                item.Draw(this._spriteBatch, Color.White);
+            }
             Daisy.Draw(this._spriteBatch, Color.White);
             Luigi.Draw(this._spriteBatch, Color.White);
 

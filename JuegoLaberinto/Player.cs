@@ -11,7 +11,7 @@ namespace JuegoLaberinto
 {
     class Player : Sprite
     {
-        public Player() : base("Daisy", new Point(0, 400), new Point(150, 150))
+        public Player() : base("Daisy", new Point(-40, 450), new Point(150, 150))
         {
 
         }
