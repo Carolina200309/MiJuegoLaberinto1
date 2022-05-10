@@ -33,13 +33,15 @@ namespace JuegoLaberinto
             // TODO: Add your initialization logic here
             fondo = new Background();
             Daisy = new Player();
-            Luigi = new Sprite("Luigi", new Point(690, 0), new Point(100, 100));
+            Luigi = new Sprite("Luigi", new Point(690, 0), new Point(80, 80));
             walls = new List<Walls>();
-            walls.AddRange(Walls.HorizontalWall(new Point(100,100), 14));
-            walls.AddRange(Walls.VerticalWall(new Point(100, 150), 2));
-            walls.AddRange(Walls.HorizontalWall(new Point(-50, 400), 15));
-            walls.AddRange(Walls.HorizontalWall(new Point(100, 200), 14));
-            walls.AddRange(Walls.VerticalWall(new Point(700, 350), 2));
+            walls.AddRange(Walls.HorizontalWall(new Point(70, 80), 16));
+            walls.AddRange(Walls.VerticalWall(new Point(70, 100), 2));
+            walls.AddRange(Walls.HorizontalWall(new Point(70, 150), 16));
+            walls.AddRange(Walls.VerticalWall(new Point(700, 300), 3));
+            walls.AddRange(Walls.HorizontalWall(new Point(-50, 300), 17));
+            walls.AddRange(Walls.HorizontalWall(new Point(-20,400), 17));
+            walls.AddRange(Walls.HorizontalWall(new Point(1, 550), 18));
 
             base.Initialize();
         }

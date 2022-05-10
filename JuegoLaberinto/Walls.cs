@@ -23,8 +23,8 @@ namespace JuegoLaberinto
             int tempx = location.X;
             for (int i = 0; i < numveces; i++)
             {
-                walls.Add(new Walls(new Point(50, 50), new Point(tempx, location.Y)));
-                tempx += 50;
+                walls.Add(new Walls(new Point(45, 45), new Point(tempx, location.Y)));
+                tempx += 45;
             }
 
             return walls;
@@ -36,8 +36,8 @@ namespace JuegoLaberinto
             int tempy = location.Y;
             for (int i = 0; i<numveces; i++)
 			{
-                walls.Add(new Walls(new Point(50, 50), new Point(location.X, tempy)));
-                tempy += 50;
+                walls.Add(new Walls(new Point(45, 45), new Point(location.X, tempy)));
+                tempy += 45;
 			}
 
             return walls;
