@@ -19,27 +19,39 @@ namespace JuegoLaberinto
         /// <summary>
         /// Move the object horizontally and vertically
         /// /// </summary>
-        /// <param name="direction">string, right, left, down and up</param>
+        /// <param name="direction">Enum, that defines string, right, left, down and up</param>
 
-        public void Move(string direction)
+        public void Move(Direction direction)
         {
             switch (direction)
             {
-                case "right":
+                case Direction.Right:
                     this.Location = new Point(this.Location.X + 5, this.Location.Y);
+
                     break;
-                case "left":
+                case Direction.Left:
                     this.Location = new Point(this.Location.X - 5, this.Location.Y);
                     break;
-                case "down":
+                case Direction.Down:
                     this.Location = new Point(this.Location.X, this.Location.Y + 5);
                     break;
-                case "up":
+                case Direction.Up:
                     this.Location = new Point(this.Location.X, this.Location.Y - 5);
+                    break;
+                default:
                     break;
 
             }
-
         }
+        }
+    enum Direction
+    {
+        Right,
+        Left,
+        Up,
+        Down
+
     }
 }
+
+

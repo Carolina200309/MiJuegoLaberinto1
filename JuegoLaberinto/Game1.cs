@@ -13,7 +13,9 @@ namespace JuegoLaberinto
         Background fondo;
         Player Daisy;
         Sprite Luigi;
-        List<Walls> walls;
+        Walls walls;
+        SpriteFont generalfont;
+        int life;
         
 
         public Game1()
@@ -34,14 +36,15 @@ namespace JuegoLaberinto
             fondo = new Background();
             Daisy = new Player();
             Luigi = new Sprite("Luigi", new Point(690, 0), new Point(80, 80));
-            walls = new List<Walls>();
-            walls.AddRange(Walls.HorizontalWall(new Point(70, 80), 16));
-            walls.AddRange(Walls.VerticalWall(new Point(70, 100), 2));
-            walls.AddRange(Walls.HorizontalWall(new Point(70, 150), 16));
-            walls.AddRange(Walls.VerticalWall(new Point(700, 300), 3));
-            walls.AddRange(Walls.HorizontalWall(new Point(-50, 300), 17));
-            walls.AddRange(Walls.HorizontalWall(new Point(-20,400), 17));
-            walls.AddRange(Walls.HorizontalWall(new Point(1, 550), 18));
+            walls = new Walls();
+            walls.HorizontalWall(new Point(70, 80), 16);
+            walls.VerticalWall(new Point(70, 100), 2);
+            walls.HorizontalWall(new Point(70, 150), 16);
+            walls.VerticalWall(new Point(700, 300), 3);
+            walls.HorizontalWall(new Point(-50, 300), 17);
+            walls.HorizontalWall(new Point(-20,400), 17);
+            walls.HorizontalWall(new Point(1, 550), 18);
+            life = 10;
 
             base.Initialize();
         }
@@ -54,14 +57,13 @@ namespace JuegoLaberinto
             fondo.LoadContent(this.Content);
             Daisy.LoadContent(this.Content);
             Luigi.LoadContent(this.Content);
+            generalfont = this.Content.Load<SpriteFont>("MyFont");
 
-            foreach (var item in walls)
-            {
-                item.LoadContent(this.Content);
-            }
+            walls.LoadContent(this.Content);
         
 
         }
+        
 
         protected override void Update(GameTime gameTime)
         {
@@ -73,19 +75,19 @@ namespace JuegoLaberinto
 
             if (myKeyboard.IsKeyDown(Keys.Left))
             {
-                Daisy.Move("left");
+                Daisy.Move(Direction.Left);
             }
             else if (myKeyboard.IsKeyDown(Keys.Right))
             {
-                Daisy.Move("right");
+                Daisy.Move(Direction.Right);
             }
             else if (myKeyboard.IsKeyDown(Keys.Down))
             {
-                Daisy.Move("down");
+                Daisy.Move(Direction.Down);
             }
             else if (myKeyboard.IsKeyDown(Keys.Up))
             {
-                Daisy.Move("up");
+                Daisy.Move(Direction.Up);
             }
 
             base.Update(gameTime);
@@ -99,12 +101,12 @@ namespace JuegoLaberinto
             _spriteBatch.Begin();
 
             fondo.Draw(this._spriteBatch, Color.White);
-            foreach (var item in walls)
-            {
-                item.Draw(this._spriteBatch, Color.White);
-            }
+
+            walls.Draw(this._spriteBatch);
             Daisy.Draw(this._spriteBatch, Color.White);
             Luigi.Draw(this._spriteBatch, Color.White);
+            _spriteBatch.DrawString(generalfont, "Lives: " + life.ToString(), new Vector2(200, 5), Color.Black);
+            _spriteBatch.DrawString(generalfont, "Time: " + (int)(gameTime.TotalGameTime.TotalSeconds), new Vector2(400, 5), Color.Black);
 
             _spriteBatch.End();
 

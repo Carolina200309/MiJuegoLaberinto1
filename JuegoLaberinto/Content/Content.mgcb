@@ -49,6 +49,13 @@
 /processorParam:TextureFormat=Color
 /build:Luigi.png
 
+#begin Myfont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Myfont.spritefont
+
 #begin Walls.png
 /importer:TextureImporter
 /processor:TextureProcessor

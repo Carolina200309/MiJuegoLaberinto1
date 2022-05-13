@@ -10,37 +10,67 @@ using Microsoft.Xna.Framework.Input;
 
 namespace JuegoLaberinto
 {
-    class Walls : Sprite
+    class Walls
     {
-        public Walls(Point size, Point location) : base("Walls", location, size)
-        {
+        List<Wall> walls;
 
+        public Walls()
+        {
+            walls = new List<Wall>();
         }
 
-        public static List<Walls> HorizontalWall(Point location, int numveces)
+        public void LoadContent(ContentManager cm)
         {
-            List<Walls> walls = new List<Walls>();
-            int tempx = location.X;
+            foreach (var item in walls)
+            {
+                item.LoadContent(cm);
+            }
+        }
+
+        public void HorizontalWall(Point location, int numveces)
+        {
+        //    int tempx = location.X;
+        //    for (int i = 0; i < numveces; i++)
+        //    {
+        //        horizontals.Add(new Wall(new Point(45, 45), new Point(tempx, location.Y)));
+        //        tempx += 45;
+        //    }
+            AddWall(location.X, location.Y, numveces, true);
+        }
+
+        public void VerticalWall(Point location, int numveces)
+        {
+            //         int tempy = location.Y;
+            //         for (int i = 0; i<numveces; i++)
+            //{
+            //             verticals.Add(new Wall(new Point(45, 45), new Point(location.X, tempy)));
+            //             tempy += 45;
+            //}
+            AddWall(location.X, location.Y, numveces, false);
+        }
+
+        private void AddWall(int x, int y, int numveces, bool isHorizontal)
+        {
             for (int i = 0; i < numveces; i++)
             {
-                walls.Add(new Walls(new Point(45, 45), new Point(tempx, location.Y)));
-                tempx += 45;
+                walls.Add(new Wall(new Point(45, 45), new Point(x, y)));
+                if (isHorizontal)
+                {
+                    x += 45;
+                }
+                else
+                {
+                    y += 45;
+                }
             }
-
-            return walls;
         }
 
-        public static List<Walls> VerticalWall(Point location, int numveces)
+        public void Draw (SpriteBatch sp)
         {
-            List<Walls> walls = new List<Walls>();
-            int tempy = location.Y;
-            for (int i = 0; i<numveces; i++)
-			{
-                walls.Add(new Walls(new Point(45, 45), new Point(location.X, tempy)));
-                tempy += 45;
-			}
-
-            return walls;
+            foreach (var item in walls)
+            {
+                item.Draw(sp, Color.White);
+            }
         }
     }
 }
