@@ -40,11 +40,11 @@ namespace JuegoLaberinto
             walls.HorizontalWall(new Point(70, 80), 16);
             walls.VerticalWall(new Point(70, 100), 2);
             walls.HorizontalWall(new Point(70, 150), 16);
-            walls.VerticalWall(new Point(700, 300), 3);
-            walls.HorizontalWall(new Point(-50, 300), 17);
-            walls.HorizontalWall(new Point(-20,400), 17);
+            walls.VerticalWall(new Point(650, 300), 3);
+            walls.HorizontalWall(new Point(-40, 300), 16);
+            walls.HorizontalWall(new Point(-25,400), 16);
             walls.HorizontalWall(new Point(1, 550), 18);
-            life = 10;
+            //life = 10;
 
             base.Initialize();
         }
@@ -90,6 +90,12 @@ namespace JuegoLaberinto
                 Daisy.Move(Direction.Up);
             }
 
+           
+             if (Luigi.rectangle.Intersects(Daisy.rectangle))
+            {
+                //Seria lo de gameeover
+               // return;
+            }
             base.Update(gameTime);
         }
 
@@ -105,12 +111,14 @@ namespace JuegoLaberinto
             walls.Draw(this._spriteBatch);
             Daisy.Draw(this._spriteBatch, Color.White);
             Luigi.Draw(this._spriteBatch, Color.White);
-            _spriteBatch.DrawString(generalfont, "Lives: " + life.ToString(), new Vector2(200, 5), Color.Black);
-            _spriteBatch.DrawString(generalfont, "Time: " + (int)(gameTime.TotalGameTime.TotalSeconds), new Vector2(400, 5), Color.Black);
+            //_spriteBatch.DrawString(generalfont, "Lives: " + life.ToString(), new Vector2(200, 5), Color.Black);
+            _spriteBatch.DrawString(generalfont, "Time: " + (int)(gameTime.TotalGameTime.TotalSeconds), new Vector2(350, 5), Color.Black);
 
             _spriteBatch.End();
 
             base.Draw(gameTime);
+
+            
         }
     }
 }

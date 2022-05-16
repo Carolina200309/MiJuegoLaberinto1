@@ -11,7 +11,7 @@ namespace JuegoLaberinto
 {
     class Player : Sprite
     {
-        public Player() : base("Daisy", new Point(-40, 450), new Point(120, 120))
+        public Player() : base("Daisy", new Point(-30, 460), new Point(90, 90))
         {
 
         }
@@ -23,25 +23,34 @@ namespace JuegoLaberinto
 
         public void Move(Direction direction)
         {
+            Rectangle tempLocation = this.rectangle;
             switch (direction)
             {
                 case Direction.Right:
-                    this.Location = new Point(this.Location.X + 5, this.Location.Y);
+                    tempLocation.Location = new Point(this.Location.X + 5, this.Location.Y);
 
                     break;
                 case Direction.Left:
-                    this.Location = new Point(this.Location.X - 5, this.Location.Y);
+                    tempLocation.Location = new Point(this.Location.X - 5, this.Location.Y);
                     break;
                 case Direction.Down:
-                    this.Location = new Point(this.Location.X, this.Location.Y + 5);
+                    tempLocation.Location = new Point(this.Location.X, this.Location.Y + 5);
                     break;
                 case Direction.Up:
-                    this.Location = new Point(this.Location.X, this.Location.Y - 5);
+                    tempLocation.Location = new Point(this.Location.X, this.Location.Y - 5);
                     break;
                 default:
                     break;
 
             }
+            foreach(var item in Walls.walls)
+            {
+               if(tempLocation.Intersects(item.rectangle))
+                {
+                    return;
+                }
+            }
+             this.Location = tempLocation.Location;
         }
         }
     enum Direction

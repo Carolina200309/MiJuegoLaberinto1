@@ -12,7 +12,7 @@ namespace JuegoLaberinto
 {
     class Walls
     {
-        List<Wall> walls;
+        public static List<Wall> walls;
 
         public Walls()
         {

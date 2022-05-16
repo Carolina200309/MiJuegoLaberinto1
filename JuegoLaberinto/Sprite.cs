@@ -16,7 +16,7 @@ namespace JuegoLaberinto
 
         protected Texture2D texture2D;
 
-        protected Rectangle rectangle;
+        public Rectangle rectangle;
 
         private Point location;
 
