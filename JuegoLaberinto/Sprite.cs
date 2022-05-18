@@ -79,6 +79,7 @@ namespace JuegoLaberinto
         /// <param name="contentManager">Send the principal content manager of the Game</param>
         public void LoadContent(ContentManager contentManager)
         {
+            //try catch
             this.texture2D = contentManager.Load<Texture2D>(this.sourceImageName);
         }
 

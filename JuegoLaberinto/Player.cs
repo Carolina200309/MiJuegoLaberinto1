@@ -11,7 +11,7 @@ namespace JuegoLaberinto
 {
     class Player : Sprite
     {
-        public Player() : base("Daisy", new Point(-30, 460), new Point(90, 90))
+        public Player() : base("Daisy", new Point(5, 460), new Point(85, 85))
         {
 
         }
@@ -43,14 +43,27 @@ namespace JuegoLaberinto
                     break;
 
             }
-            foreach(var item in Walls.walls)
+
+            if (tempLocation.X >= 700 || tempLocation.X <= 0)
+            {
+                return;
+            }
+            if (tempLocation.Y >= 500 || tempLocation.Y <= 0)
+            {
+                return;
+            }
+
+            foreach (var item in Walls.walls)
             {
                if(tempLocation.Intersects(item.rectangle))
                 {
                     return;
                 }
             }
-             this.Location = tempLocation.Location;
+            
+            this.Location = tempLocation.Location;
+
+            
         }
         }
     enum Direction
