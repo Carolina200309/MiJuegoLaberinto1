@@ -21,7 +21,6 @@ namespace JuegoLaberinto
         SoundEffect completacionnivel;
         SpriteFont generalfont;
         bool Isgameover;
-
         //int life;
         
 
@@ -53,7 +52,6 @@ namespace JuegoLaberinto
             walls.HorizontalWall(new Point(-40, 300), 16);
             walls.HorizontalWall(new Point(-25,400), 16);
             walls.HorizontalWall(new Point(1, 550), 18);
-            //life = 10;
 
             base.Initialize();
         }
@@ -110,7 +108,6 @@ namespace JuegoLaberinto
                 MediaPlayer.Pause();
                 Luigi.Location = new Point(1000, 1000);
                 Isgameover = true;
-                
                 completacionnivel.Play();
             }
 
@@ -128,21 +125,29 @@ namespace JuegoLaberinto
             walls.Draw(this._spriteBatch);
             Daisy.Draw(this._spriteBatch, Color.White);
             Luigi.Draw(this._spriteBatch, Color.White);
-            //_spriteBatch.DrawString(generalfont, "Lives: " + life.ToString(), new Vector2(200, 5), Color.Black);
-            //_spriteBatch.DrawString(generalfont, "Time: " + (int)(gameTime.TotalGameTime.TotalSeconds), new Vector2(350, 5), Color.Black);
-            _spriteBatch.DrawString(generalfont, "Time: " + (int)(gameTime.TotalGameTime.TotalSeconds), new Vector2(350, 5), Color.Black);
 
-    
+            int tiempo = (int)(gameTime.TotalGameTime.TotalSeconds-11);
+            if(tiempo<0)
+             {   
+                _spriteBatch.DrawString(generalfont, "Time: " + tiempo, new Vector2(350, 5), Color.Black);
+             }
+
+            else if (tiempo>=0)
+            {
+                MediaPlayer.Pause();
+                Daisy.Location = new Point(2000, 2000);
+                Gameover.Draw(this._spriteBatch, Color.White);
+            }
+
             if (Isgameover)
             {
-                Gameover.Draw(this._spriteBatch, Color.White);
+               Gameover.Draw(this._spriteBatch, Color.White);
             }
 
             _spriteBatch.End();
 
             base.Draw(gameTime);
 
-            
         }
     }
 }
