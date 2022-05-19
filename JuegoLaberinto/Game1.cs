@@ -21,9 +21,7 @@ namespace JuegoLaberinto
         SoundEffect completacionnivel;
         SpriteFont generalfont;
         bool Isgameover;
-        //int life;
         
-
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -35,7 +33,6 @@ namespace JuegoLaberinto
             _graphics.ApplyChanges();
 
         }
-
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
@@ -59,9 +56,7 @@ namespace JuegoLaberinto
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-
             // TODO: use this.Content to load your game content here
-            
             fondo.LoadContent(this.Content);
             Gameover.LoadContent(this.Content);
             Daisy.LoadContent(this.Content);
@@ -74,7 +69,6 @@ namespace JuegoLaberinto
             walls.LoadContent(this.Content);
 
         }
-
 
         protected override void Update(GameTime gameTime)
         {
@@ -111,7 +105,6 @@ namespace JuegoLaberinto
                 completacionnivel.Play();
             }
 
-
             base.Update(gameTime);
         }
 
@@ -126,8 +119,9 @@ namespace JuegoLaberinto
             Daisy.Draw(this._spriteBatch, Color.White);
             Luigi.Draw(this._spriteBatch, Color.White);
 
-            int tiempo = (int)(gameTime.TotalGameTime.TotalSeconds-11);
-            if(tiempo<0)
+            int tiempo = (int)(gameTime.TotalGameTime.TotalSeconds);
+
+            if(tiempo<10)
              {   
                 _spriteBatch.DrawString(generalfont, "Time: " + tiempo, new Vector2(350, 5), Color.Black);
              }
@@ -145,9 +139,7 @@ namespace JuegoLaberinto
             }
 
             _spriteBatch.End();
-
             base.Draw(gameTime);
-
         }
     }
 }
