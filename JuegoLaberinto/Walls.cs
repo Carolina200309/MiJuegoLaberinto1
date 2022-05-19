@@ -21,9 +21,16 @@ namespace JuegoLaberinto
 
         public void LoadContent(ContentManager cm)
         {
+            try
+            { 
             foreach (var item in walls)
             {
                 item.LoadContent(cm);
+            }
+            }
+            catch
+            {
+                throw new Exception("Enter a list of walls");
             }
         }
 

@@ -18,9 +18,10 @@ namespace JuegoLaberinto
         Gameover Gameover;
         Walls walls;
         Song musicajuego;
-        //SoundEffect soundEffect;
+        SoundEffect completacionnivel;
         SpriteFont generalfont;
         bool Isgameover;
+
         //int life;
         
 
@@ -69,13 +70,13 @@ namespace JuegoLaberinto
             Luigi.LoadContent(this.Content);
             generalfont = this.Content.Load<SpriteFont>("MyFont");
             musicajuego = this.Content.Load<Song>("musicajuego");
+            completacionnivel = this.Content.Load<SoundEffect>("completacionnivel");
             MediaPlayer.Play(musicajuego);
-            MediaPlayer.Volume = 0.5f;
+            MediaPlayer.Volume = 0.4f;
             walls.LoadContent(this.Content);
-        
 
         }
-        
+
 
         protected override void Update(GameTime gameTime)
         {
@@ -103,6 +104,16 @@ namespace JuegoLaberinto
                     Daisy.Move(Direction.Up);
                 }
             }
+             
+             if (Luigi.rectangle.Intersects(Daisy.rectangle))
+            {
+                MediaPlayer.Pause();
+                Luigi.Location = new Point(1000, 1000);
+                Isgameover = true;
+                
+                completacionnivel.Play();
+            }
+
 
             base.Update(gameTime);
         }
@@ -113,19 +124,18 @@ namespace JuegoLaberinto
 
             // TODO: Add your drawing code here
             _spriteBatch.Begin();
-
             fondo.Draw(this._spriteBatch, Color.White);
-
             walls.Draw(this._spriteBatch);
             Daisy.Draw(this._spriteBatch, Color.White);
             Luigi.Draw(this._spriteBatch, Color.White);
             //_spriteBatch.DrawString(generalfont, "Lives: " + life.ToString(), new Vector2(200, 5), Color.Black);
+            //_spriteBatch.DrawString(generalfont, "Time: " + (int)(gameTime.TotalGameTime.TotalSeconds), new Vector2(350, 5), Color.Black);
             _spriteBatch.DrawString(generalfont, "Time: " + (int)(gameTime.TotalGameTime.TotalSeconds), new Vector2(350, 5), Color.Black);
 
-            if (Luigi.rectangle.Intersects(Daisy.rectangle))
+    
+            if (Isgameover)
             {
                 Gameover.Draw(this._spriteBatch, Color.White);
-                Isgameover = true;
             }
 
             _spriteBatch.End();
