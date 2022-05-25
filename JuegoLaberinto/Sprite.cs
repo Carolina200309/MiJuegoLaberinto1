@@ -11,13 +11,9 @@ namespace JuegoLaberinto
 {
     class Sprite
     {
-
         private string sourceImageName;
-
         protected Texture2D texture2D;
-
         public Rectangle rectangle;
-
         private Point location;
 
         public Point Location
@@ -83,11 +79,11 @@ namespace JuegoLaberinto
             {
                 this.texture2D = contentManager.Load<Texture2D>(this.sourceImageName);
             }
-            catch(Exception )
+            catch(Exception ex)
             {
-                throw new Exception("No sourceImageName entered");
+                throw new Exception("No sourceImageName entered"+ ex.Message+" " +
+                    "" + this.sourceImageName);
             }
-
         }
 
         /// <summary>

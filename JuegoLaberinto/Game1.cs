@@ -11,17 +11,24 @@ namespace JuegoLaberinto
     public class Game1 : Game
     {
         private GraphicsDeviceManager _graphics;
+        private SoundEffectInstance _EffectInstance;
         private SpriteBatch _spriteBatch;
         Background fondo;
         Player Daisy;
         Sprite Luigi;
         Gameover Gameover;
         Walls walls;
+        Hearts hearts;
         Song musicajuego;
         SoundEffect completacionnivel;
+        SoundEffect perdionivel;
+        //Sprite cuadro;
+        
         SpriteFont generalfont;
         bool Isgameover;
-        
+
+
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -37,11 +44,20 @@ namespace JuegoLaberinto
         {
             // TODO: Add your initialization logic here
             fondo = new Background();
+            //cuadro = new Sprite("cuadro", new Point(0,0), new Point(800, 600));
             Gameover = new Gameover();
             Daisy = new Player();
             Luigi = new Sprite("Luigi", new Point(690, 10), new Point(80, 80));
             Isgameover = false;
             walls = new Walls();
+            hearts = new Hearts();
+            hearts.AddHeart(new Point(100, 470));
+            hearts.AddHeart(new Point(500, 470));
+            hearts.AddHeart(new Point(710, 350));
+            hearts.AddHeart(new Point(500, 230));
+            hearts.AddHeart(new Point(20, 230));
+            hearts.AddHeart(new Point(600, 20));
+            hearts.AddHeart(new Point(200, 20));
             walls.HorizontalWall(new Point(90, 90), 16);
             walls.VerticalWall(new Point(90, 110), 2);
             walls.HorizontalWall(new Point(90, 160), 16);
@@ -62,11 +78,14 @@ namespace JuegoLaberinto
             Daisy.LoadContent(this.Content);
             Luigi.LoadContent(this.Content);
             generalfont = this.Content.Load<SpriteFont>("MyFont");
+            //cuadro.LoadContent(this.Content);
             musicajuego = this.Content.Load<Song>("musicajuego");
             completacionnivel = this.Content.Load<SoundEffect>("completacionnivel");
+            perdionivel = this.Content.Load<SoundEffect>("perdionivel");
             MediaPlayer.Play(musicajuego);
             MediaPlayer.Volume = 0.4f;
             walls.LoadContent(this.Content);
+            hearts.LoadContent(this.Content);
 
         }
 
@@ -115,20 +134,28 @@ namespace JuegoLaberinto
             // TODO: Add your drawing code here
             _spriteBatch.Begin();
             fondo.Draw(this._spriteBatch, Color.White);
+            //cuadro.Draw(this._spriteBatch, Color.White);
             walls.Draw(this._spriteBatch);
             Daisy.Draw(this._spriteBatch, Color.White);
             Luigi.Draw(this._spriteBatch, Color.White);
+            hearts.Draw(this._spriteBatch);
 
-            int tiempo = (int)(gameTime.TotalGameTime.TotalSeconds);
-
-            if(tiempo<10)
+            int tiempo = 12;
+            tiempo = tiempo - (int)(gameTime.TotalGameTime.TotalSeconds);
+            if(tiempo != 0)
              {   
                 _spriteBatch.DrawString(generalfont, "Time: " + tiempo, new Vector2(350, 5), Color.Black);
              }
 
-            else if (tiempo>=0)
+            else if (tiempo<=0)
             {
                 MediaPlayer.Pause();
+                if (Isgameover == false) 
+                {
+                    perdionivel.Play();
+                    Isgameover = true;
+                }
+                    
                 Daisy.Location = new Point(2000, 2000);
                 Gameover.Draw(this._spriteBatch, Color.White);
             }
