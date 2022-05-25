@@ -63,13 +63,14 @@ namespace JuegoLaberinto
 
             for (int i = 0; i < Hearts.hearts.Count; i++)
             {
-                Heart item = Hearts.hearts[i];
+               
+               Heart item = Hearts.hearts[i];
                 if (tempLocation.Intersects(item.rectangle))
                 {
+                    
                     Hearts.hearts.RemoveAt(i);
                 }
             }
-            
             this.Location = tempLocation.Location;
 
         }
