@@ -11,7 +11,6 @@ namespace JuegoLaberinto
     public class Game1 : Game
     {
         private GraphicsDeviceManager _graphics;
-        private SoundEffectInstance _EffectInstance;
         private SpriteBatch _spriteBatch;
         Background fondo;
         Player Daisy;
@@ -133,13 +132,13 @@ namespace JuegoLaberinto
             Luigi.Draw(this._spriteBatch, Color.White);
             hearts.Draw(this._spriteBatch);
 
-            _spriteBatch.DrawString(generalfont, "Hearts: "+ Daisy.countHeart, new Vector2(150, 5), Color.Black);
+            _spriteBatch.DrawString(generalfont, "Hearts: "+ Daisy.countHeart, new Vector2(150, 4), Color.Black);
 
             int tiempo = 12;
             tiempo = tiempo - (int)(gameTime.TotalGameTime.TotalSeconds);
             if(tiempo != 0)
              {   
-                _spriteBatch.DrawString(generalfont, "Time: " + tiempo, new Vector2(550, 5), Color.Black);
+                _spriteBatch.DrawString(generalfont, "Time: " + tiempo, new Vector2(550, 4), Color.Black);
              }
             
             else if (tiempo<=0)

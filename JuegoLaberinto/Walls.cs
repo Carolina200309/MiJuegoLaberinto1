@@ -36,23 +36,11 @@ namespace JuegoLaberinto
 
         public void HorizontalWall(Point location, int numveces)
         {
-        //    int tempx = location.X;
-        //    for (int i = 0; i < numveces; i++)
-        //    {
-        //        horizontals.Add(new Wall(new Point(45, 45), new Point(tempx, location.Y)));
-        //        tempx += 45;
-        //    }
             AddWall(location.X, location.Y, numveces, true);
         }
 
         public void VerticalWall(Point location, int numveces)
         {
-            //         int tempy = location.Y;
-            //         for (int i = 0; i<numveces; i++)
-            //{
-            //             verticals.Add(new Wall(new Point(45, 45), new Point(location.X, tempy)));
-            //             tempy += 45;
-            //}
             AddWall(location.X, location.Y, numveces, false);
         }
 
