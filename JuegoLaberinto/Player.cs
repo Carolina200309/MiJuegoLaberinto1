@@ -11,6 +11,7 @@ namespace JuegoLaberinto
 {
     class Player : Sprite
     {
+        
         public Player() : base("Daisy", new Point(5, 460), new Point(85, 85))
         {
 
@@ -20,6 +21,8 @@ namespace JuegoLaberinto
         /// Move the object horizontally and vertically
         /// /// </summary>
         /// <param name="direction">Enum, that defines string, right, left, down and up</param>
+        /// 
+        public int countheart = 0;
 
         public void Move(Direction direction)
         {
@@ -67,8 +70,8 @@ namespace JuegoLaberinto
                Heart item = Hearts.hearts[i];
                 if (tempLocation.Intersects(item.rectangle))
                 {
-                    
                     Hearts.hearts.RemoveAt(i);
+                    countheart++;
                 }
             }
             this.Location = tempLocation.Location;

@@ -24,7 +24,6 @@ namespace JuegoLaberinto
         SoundEffect perdionivel;
         SpriteFont generalfont;
         bool Isgameover;
-        int heart=0;
 
         public Game1()
         {
@@ -134,7 +133,7 @@ namespace JuegoLaberinto
             Luigi.Draw(this._spriteBatch, Color.White);
             hearts.Draw(this._spriteBatch);
 
-            _spriteBatch.DrawString(generalfont, "Hearts: "+ heart, new Vector2(110, 5), Color.Black);
+            _spriteBatch.DrawString(generalfont, "Hearts: "+ Daisy.countheart, new Vector2(150, 5), Color.Black);
 
             int tiempo = 12;
             tiempo = tiempo - (int)(gameTime.TotalGameTime.TotalSeconds);
