@@ -17,14 +17,15 @@ namespace JuegoLaberinto
 
         }
 
-        /// <summary>
-        /// Move the object horizontally and vertically
-        /// /// </summary>
-        /// <param name="direction">Enum, that defines string, right, left, down and up</param>
-        /// 
-        public int countheart = 0;
+        public int countHeart{ get; set; }
 
-        public void Move(Direction direction)
+    /// <summary>
+    /// Move the object horizontally and vertically
+    /// /// </summary>
+    /// <param name="direction">Enum, that defines string, right, left, down and up</param>
+    /// 
+
+    public void Move(Direction direction)
         {
             Rectangle tempLocation = this.rectangle;
             switch (direction)
@@ -66,14 +67,15 @@ namespace JuegoLaberinto
 
             for (int i = 0; i < Hearts.hearts.Count; i++)
             {
-               
-               Heart item = Hearts.hearts[i];
+
+                 Heart item = Hearts.hearts[i];
                 if (tempLocation.Intersects(item.rectangle))
                 {
                     Hearts.hearts.RemoveAt(i);
-                    countheart++;
+                    countHeart++;
                 }
             }
+            
             this.Location = tempLocation.Location;
 
         }
