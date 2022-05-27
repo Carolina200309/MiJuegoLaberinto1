@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace JuegoLaberinto
 {
-    class Sprite
+     class Sprite : Isprite 
     {
         private string sourceImageName;
         protected Texture2D texture2D;
@@ -43,7 +43,6 @@ namespace JuegoLaberinto
                 return this.sourceImageName;
             }
         }
-
 
         /// <summary>
         /// Overloaded Constructor receiving the name of the external resource
@@ -95,6 +94,16 @@ namespace JuegoLaberinto
         {
             this.rectangle.Location = this.Location;
             spriteBatch.Draw(this.texture2D, this.rectangle, color);
+        }
+
+        public void LoadContent()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Draw()
+        {
+            throw new NotImplementedException();
         }
     }
 }
