@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.IO;
 
 namespace JuegoLaberinto
 {
@@ -73,6 +74,14 @@ namespace JuegoLaberinto
                 {
                     Hearts.hearts.RemoveAt(i);
                     countHeart++;
+                    try
+                    {
+                        File.WriteAllText("C:/Users/usuario/Documents/Counthearts.txt", countHeart.ToString());
+                    }
+                    catch(System.Exception ex)
+                    {
+                        throw new System.Exception(ex.Message);
+                    }
                 }
             }
             
